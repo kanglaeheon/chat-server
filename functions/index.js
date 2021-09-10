@@ -59,7 +59,7 @@ const checkUser = (req, res, next) => {
 //  사용자 정보 알아내기 함수 호출
 app.user(checkUser);
 
-const createChannel(cname) {
+function createChannel(cname) {
     /* 어드민 SDK의 admin.database() 메서드로 데이터 베이스 조작,
     .ref() 메서드로 channels 노드 참조 */
     let channelsRef = admin.database().ref('channels');
@@ -125,7 +125,7 @@ app.get('/channels', (req, res) => {
 /*  지정한 채널에 새 메시지 추가 API
     :cname에서 요청 POST가 오면 이 경로가 가리키는 위치에 있는 값을
     req.param.cname에 설정.
-    .push() 메서드로 essage 객체를 channels/${cname}/messages 경로에 설정 */
+    .push() 메서드로 Message 객체를 channels/${cname}/messages 경로에 설정 */
 app.post('/channels/:cname/messages', (req, res) => {
     let cname = req.params.cname;
     let message = {
@@ -161,7 +161,7 @@ app.get('/channels/:cname/messages', (req, res) => {
 
 /* 초기 상태로 되돌리기 :
     general, random 채널 생성 */
-app.post('/reset', (req, res) {
+app.post('/reset', (req, res) => {
     createChannel('general');
     createChannel('random');
     res.header('Content-Type', 'application/json; charset=utf-8');
