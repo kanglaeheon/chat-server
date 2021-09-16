@@ -15,7 +15,7 @@ const app = express();
 /* cors(Cross Origin Resource Sharing) 모듈 임포트, app에 로드 
     Cross Domain 이슈를 방지
     (서버 디플로이된 포트와 요청 받는 API 포트가 꼬이는 것 방지) */
-const cors = require('cors');
+const cors = require('cors')({ origin: true});
 app.use(cors);
 
 /* 테스트용 document 데이터 json 생성 */
@@ -167,3 +167,5 @@ app.post('/reset', (req, res) => {
     res.header('Content-Type', 'application/json; charset=utf-8');
     res.status(201).send({result: "ok"});
 });
+
+exports.v1 = functions.https.onRequest(app);

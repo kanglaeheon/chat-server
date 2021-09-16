@@ -90,9 +90,9 @@ firebase serve --only functions
 - Git bash로 수행
 
 ```bash
-curl -H 'Content-Type:application/json' -d '{"cname": "general"}' http://localhost:5000/{프로젝트ID}/us-central1/v1/channels
-curl http://localhost:5000/{프로젝트ID}/us-central1/v1/channels
-curl -H 'Content-Type:application/json' -d '{}' http://localhost:5000/{프로젝트ID}/us-central1/v1/reset
+curl -H 'Content-Type:application/json' -d '{"cname": "general"}' http://localhost:5000/chat-server-95273/us-central1/v1/channels
+curl http://localhost:5000/chat-server-95273/us-central1/v1/channels
+curl -H 'Content-Type:application/json' -d '{}' http://localhost:5000/chat-server-95273/us-central1/v1/reset
 ```
 
 - POSTMAN 
