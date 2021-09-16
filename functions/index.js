@@ -135,7 +135,7 @@ app.post('/channels/:cname/messages', (req, res) => {
     };
     //  orderbyChild(key)   : 지정된 하위 키를 포함하는 데이터가 정렬
     //  limitToLast(value)  : value 값만큼의 개수만 데이터 수신하여 콜백 동기화
-    let messagesRef = admin.database().ref(`channels/${cname}/messages`).orderByChild(date).limitToLast(20);
+    let messagesRef = admin.database().ref(`channels/${cname}/messages`);
     messagesRef.push(message);
     res.header('Content-Type', 'application/json; charset=utf-8');
     res.status(201).send({result: 'ok'});
@@ -144,7 +144,7 @@ app.post('/channels/:cname/messages', (req, res) => {
 /* 채널 내 메시지 목록을 확인하는 API */
 app.get('/channels/:cname/messages', (req, res) => {
     let cname = req.params.cname;
-    let messagesRef = admin.database().ref(`channels/${cname}/messages`).orderByChild(date).limitToLast(20);
+    let messagesRef = admin.database().ref(`channels/${cname}/messages`).orderByChild('date').limitToLast(20);
     messagesRef.once('value', function(snapshot) {
         let items = new Array();
         snapshot.forEach(function(childSnapshot) {
