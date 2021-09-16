@@ -57,7 +57,7 @@ const checkUser = (req, res, next) => {
     };
 };
 //  사용자 정보 알아내기 함수 호출
-app.user(checkUser);
+app.use(checkUser);
 
 function createChannel(cname) {
     /* 어드민 SDK의 admin.database() 메서드로 데이터 베이스 조작,
